@@ -87,7 +87,7 @@
 
 (defun org-excalidraw--open-file-from-svg (path)
   "Open corresponding .excalidraw file for svg located at PATH."
-  (let ((excal-file-path (string-remove-suffix ".svg" path)))
+  (let ((excal-file-path (expand-file-name (string-remove-suffix ".svg" path) org-excalidraw-directory)))
     (org-excalidraw--validate-excalidraw-file excal-file-path)
     (shell-command (org-excalidraw--shell-cmd-open excal-file-path system-type))))
 
@@ -105,7 +105,7 @@
   (interactive)
   (let* ((filename (format "%s.excalidraw" (org-id-uuid)))
          (path (expand-file-name filename org-excalidraw-directory))
-         (link (format "[[excalidraw:%s.svg]]" path)))
+         (link (format "[[excalidraw:%s.svg]]" filename)))
     (org-excalidraw--validate-excalidraw-file path)
     (insert link)
     (with-temp-file path (insert org-excalidraw-base))
