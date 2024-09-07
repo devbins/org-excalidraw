@@ -103,7 +103,7 @@
 (defun org-excalidraw-create-drawing ()
   "Create an excalidraw drawing and insert an 'org-mode' link to it at Point."
   (interactive)
-  (let* ((filename (format "%s.excalidraw" (org-id-uuid)))
+  (let* ((filename (format "%s-%s.excalidraw" (file-name-sans-extension (file-relative-name (buffer-file-name) org-excalidraw-directory)) (org-id-uuid)))
          (path (expand-file-name filename org-excalidraw-directory))
          (link (format "[[excalidraw:%s.svg]]" filename)))
     (org-excalidraw--validate-excalidraw-file path)
