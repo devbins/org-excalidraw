@@ -79,6 +79,7 @@
 
 * Architecture
   [[excalidraw:architecture.excalidraw]]
+  [[file:architecture.svg]] 
 
   The diagram above shows the package architecture:
 
