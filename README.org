@@ -6,7 +6,7 @@
   Display [[https://excalidraw.com][Excalidraw]] drawings inline in ~org-mode~ buffers via SVG rendering.
 
   Edit diagrams in [[https://excalidraw.com][excalidraw.com]] or the desktop app, preview them directly in your org buffers, and export to HTML/LaTeX seamlessly.
-
+  [[file:demo.gif]] 
 * Features
 
   - Inline SVG preview of ~.excalidraw~ files in org-mode
