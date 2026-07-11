@@ -6,7 +6,7 @@
 ;; Version: 0.1.0
 ;; Package-Requires: ((emacs "31"))
 ;; Keywords: org, excalidraw, drawing, diagrams
-;; URL: https://github.com/user/org-excalidraw
+;; URL: https://github.com/devbins/org-excalidraw
 
 ;;; Commentary:
 
