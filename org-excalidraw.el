@@ -184,7 +184,7 @@ FILENAME should start with `excalidraw-' prefix."
     (when (and link (string-suffix-p ".excalidraw" link))
       (org-excalidraw--export full-path svg-path)
       (message "Refreshed: %s" link)
-      (org-toggle-inline-images))))
+      (org-link-preview-refresh))))
 
 (defun org-excalidraw-refresh-all ()
   "Refresh all excalidraw images in the current buffer."
@@ -196,7 +196,7 @@ FILENAME should start with `excalidraw-' prefix."
         (when (and full-path (string-suffix-p ".excalidraw" full-path))
           (let ((svg-path (org-excalidraw--svg-path full-path)))
             (org-excalidraw--export full-path svg-path))))))
-  (org-toggle-inline-images)
+  (org-link-preview-refresh)
   (message "Refreshed all excalidraw images"))
 
 ;;; Org Integration
