@@ -41,15 +41,6 @@
   :type 'integer
   :group 'org-excalidraw)
 
-(defcustom org-excalidraw-logo-file nil
-  "Path to a custom Excalidraw logo SVG used as the loading placeholder.
-When set, this file is used for every drawing.  When nil, an
-`excalidraw-logo.svg' next to the source file is used if present,
-otherwise the built-in placeholder is written there."
-  :type '(choice (file :tag "Logo SVG file")
-                 (const :tag "Per-directory / built-in" nil))
-  :group 'org-excalidraw)
-
 ;;; Excalidraw File Template
 
 (defun org-excalidraw--create-template ()
@@ -74,13 +65,10 @@ otherwise the built-in placeholder is written there."
   "Built-in official Excalidraw logo, embedded inline (no external file).
 Rendered directly from this string via `create-image' (no temp file).")
 
-(defun org-excalidraw--logo-image (&optional _excalidraw-file)
-  "Return an image of the Excalidraw logo placeholder.
-Uses `org-excalidraw-logo-file' if set (file-based), otherwise the
-inline logo rendered directly from its SVG string (no temp file)."
-  (if (and org-excalidraw-logo-file (file-exists-p org-excalidraw-logo-file))
-      (create-image org-excalidraw-logo-file 'svg nil :width 300)
-    (create-image org-excalidraw--logo-svg 'svg t :width 300)))
+(defun org-excalidraw--logo-image ()
+  "Return an image of the inline Excalidraw logo placeholder.
+Rendered directly from the embedded SVG string (no temp file)."
+  (create-image org-excalidraw--logo-svg 'svg t :width 300))
 
 (defun org-excalidraw--show-image (ov svg-path width height)
   "Display the SVG at SVG-PATH in overlay OV at WIDTH/HEIGHT."
@@ -245,7 +233,7 @@ that displaying images never blocks the UI."
         t)
        ;; Needs (re)generation: show the logo first, render async, then load.
        ((file-exists-p full-path)
-        (overlay-put ov 'display (org-excalidraw--logo-image full-path))
+        (overlay-put ov 'display (org-excalidraw--logo-image))
         (overlay-put ov 'face 'default)
         (overlay-put ov 'keymap image-map)
         (org-excalidraw--ensure-svg-async
